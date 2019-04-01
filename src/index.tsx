@@ -109,7 +109,9 @@ export class ImageCache {
             }).catch(() => {
                 cache.downloading = false;
                 // Parts of the image may have been downloaded already, (see https://github.com/wkh237/react-native-fetch-blob/issues/331)
-                RNFetchBlob.fs.unlink(path);
+                RNFetchBlob.fs.unlink(path).catch(() => {
+                    console.log(`Failed to delete file ${path}`);
+                });
             });
         }
     }
