@@ -151,7 +151,7 @@ export class BaseCachedImage extends Component {
         }
         return source;
     }
-    componentWillMount() {
+    componentDidMount() {
         const { mutable } = this.props;
         const source = this.checkSource(this.props.source);
         this.setState({ path: undefined });
@@ -159,9 +159,9 @@ export class BaseCachedImage extends Component {
             this.observe(source, mutable === true);
         }
     }
-    componentWillReceiveProps(nextProps) {
-        const { mutable } = nextProps;
-        const source = this.checkSource(nextProps.source);
+    componentDidUpdate(prevProps) {
+        const { mutable } = this.props;
+        const source = this.checkSource(this.props.source);
         if (typeof (source) !== "number" && source.uri) {
             this.observe(source, mutable === true);
         }
