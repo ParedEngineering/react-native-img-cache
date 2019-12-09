@@ -198,7 +198,7 @@ export abstract class BaseCachedImage<P extends CachedImageProps> extends Compon
         return source;
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         const {mutable} = this.props;
         const source = this.checkSource(this.props.source);
         this.setState({ path: undefined });
@@ -207,7 +207,7 @@ export abstract class BaseCachedImage<P extends CachedImageProps> extends Compon
         }
     }
 
-    componentWillReceiveProps(nextProps: P) {
+    UNSAFE_componentWillReceiveProps(nextProps: P) {
         const {mutable} = nextProps;
         const source = this.checkSource(nextProps.source);
         if (typeof(source) !== "number" && source.uri) {
